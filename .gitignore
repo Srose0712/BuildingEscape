@@ -1,0 +1,16 @@
+#######################
+# UNREAL IGNORE FILES #
+#######################
+
+*/Binaries
+*/Build
+*/DerivedDataCache
+*/Intermediate
+*/Saved
+BuildingEscape/Content/StarterContent
+
+######################
+# XCODE IGNORE FILES #
+######################
+
+*.xcworkspace
