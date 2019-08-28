@@ -21,13 +21,15 @@ UOpenDoor::UOpenDoor()
 
 void UOpenDoor:: OpenDoor()
 {
-    AActor* Owner = GetOwner();
-    
-    // Create a rotator
-    FRotator NewRotation = FRotator(0.0f, -60.0f, 0.0f);
-    
     // Set the door rotation
-    Owner -> SetActorRotation(NewRotation);
+    Owner -> SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+}
+
+void UOpenDoor:: CloseDoor()
+{
+    // Create a rotator
+    Owner -> SetActorRotation(FRotator(0.0f, 60.0f, 0.0f));
+
 }
 
 // Called when the game starts
@@ -48,10 +50,18 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
     // Poll the Trigger Volume
     // If the ActorThatOpens is in the volume
-    if(PressurePlate -> IsOverlappingActor(ActorThatOpens))
+    if( PressurePlate -> IsOverlappingActor(ActorThatOpens))
     {
         
         OpenDoor();
+        float LastTimeDoorOpen = GetWorld() -> GetTimeSeconds();
     }
+    
+    // Check if time to close the door
+    if(GetWorld() -> GetTimeSeconds() - LastTimeDoorOpen > DoorDelay)
+    {
+        CloseDoor();
+    }
+
 }
 

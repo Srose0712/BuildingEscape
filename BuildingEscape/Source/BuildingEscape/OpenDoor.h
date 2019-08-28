@@ -11,7 +11,7 @@
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
@@ -26,14 +26,20 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
     
     virtual void OpenDoor();
+    virtual void CloseDoor();
 
 private:
     UPROPERTY(VisibleAnywhere)
     float OpenAngle = 90.0f;
     
     UPROPERTY(EditAnywhere)
+    float DoorDelay = 1.0f;
+    
+    float LastTimeDoorOpen;
+    
     ATriggerVolume* PressurePlate;
 		
     AActor* ActorThatOpens;
+    AActor* Owner;
     
 };
