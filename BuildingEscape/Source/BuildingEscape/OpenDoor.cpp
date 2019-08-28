@@ -18,6 +18,16 @@ UOpenDoor::UOpenDoor()
 	// ...
 }
 
+// Called when the game starts
+void UOpenDoor::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Find owning Actor
+	Owner = GetOwner();
+	ActorThatOpens = GetWorld()-> GetFirstPlayerController()-> GetPawn();
+
+}
 
 void UOpenDoor:: OpenDoor()
 {
@@ -28,20 +38,9 @@ void UOpenDoor:: OpenDoor()
 void UOpenDoor:: CloseDoor()
 {
     // Create a rotator
-    Owner -> SetActorRotation(FRotator(0.0f, 60.0f, 0.0f));
+    Owner -> SetActorRotation(FRotator(0.0f, CloseAngle, 0.0f));
 
 }
-
-// Called when the game starts
-void UOpenDoor::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// Find owning Actor
-    ActorThatOpens = GetWorld() -> GetFirstPlayerController() -> GetPawn();
-    
-}
-
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -54,11 +53,11 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
     {
         
         OpenDoor();
-        float LastTimeDoorOpen = GetWorld() -> GetTimeSeconds();
+        LastTimeDoorOpen = GetWorld() -> GetTimeSeconds();
     }
     
     // Check if time to close the door
-    if(GetWorld() -> GetTimeSeconds() - LastTimeDoorOpen > DoorDelay)
+    if( GetWorld() -> GetTimeSeconds() - LastTimeDoorOpen > DoorDelay)
     {
         CloseDoor();
     }
