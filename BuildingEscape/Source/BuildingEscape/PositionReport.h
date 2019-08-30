@@ -1,28 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-#pragma once
-
-#include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "PositionReport.generated.h"
-
-
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class BUILDINGESCAPE_API UPositionReport : public UActorComponent
-{
-	GENERATED_BODY()
-
-public:	
-	// Sets default values for this component's properties
-	UPositionReport();
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:2070d0bb39e972f5b6faac7fec8273ec0e70553a81b7a37f69cb838b6ab1bb4f
+size 707
